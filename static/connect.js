@@ -239,8 +239,17 @@
     const key = platformKey();
     document.body.classList.add(`platform-${key}`);
 
-    const res = await fetch("../../demo/paper_connector_materials.json");
-    if (!res.ok) throw new Error("Could not load paper→connector map");
+    const candidates = [
+      new URL("../demo/paper_connector_materials.json", document.currentScript?.src || location.href),
+      new URL("../../demo/paper_connector_materials.json", location.href),
+      new URL("demo/paper_connector_materials.json", location.href),
+    ];
+    let res = null;
+    for (const url of candidates) {
+      res = await fetch(url.href);
+      if (res.ok) break;
+    }
+    if (!res || !res.ok) throw new Error("Could not load paper→connector map");
     const data = await res.json();
 
     let paperId = paperIdFromQuery() || data.default_paper_id;
