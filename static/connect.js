@@ -60,7 +60,7 @@
       app.innerHTML = `
         <header class="cr-top">
           <div class="cr-top-inner">
-            <a class="cr-logo" href="connect/coursera">coursera</a>
+            <a class="cr-logo" href="../coursera/">coursera</a>
             <div class="cr-search"><input value="${esc(paper.topic || "")}" readonly aria-label="Search"><span>⌕</span></div>
             <div class="cr-top-meta">Lecture · mapped to your paper</div>
           </div>
@@ -123,7 +123,7 @@
       app.innerHTML = `
         <header class="yt-top">
           <div class="yt-top-inner">
-            <a class="yt-logo" href="connect/youtube"><b>▶</b> YouTube</a>
+            <a class="yt-logo" href="../youtube/"><b>▶</b> YouTube</a>
             <div class="yt-search"><input value="${esc(paper.topic || "")}" readonly aria-label="Search"><span>⌕</span></div>
           </div>
         </header>
@@ -184,7 +184,7 @@
       app.innerHTML = `
         <header class="nw-mast">
           <div class="nw-mast-inner">
-            <a class="nw-brand" href="connect/news">The Paper Desk</a>
+            <a class="nw-brand" href="../news/">The Paper Desk</a>
             <p class="nw-date-line">News · mapped to your research upload</p>
           </div>
         </header>
@@ -239,7 +239,7 @@
     const key = platformKey();
     document.body.classList.add(`platform-${key}`);
 
-    const res = await fetch("demo/paper_connector_materials.json");
+    const res = await fetch("../../demo/paper_connector_materials.json");
     if (!res.ok) throw new Error("Could not load paper→connector map");
     const data = await res.json();
 
